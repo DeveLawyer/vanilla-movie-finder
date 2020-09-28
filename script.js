@@ -1,28 +1,46 @@
 const API_KEY = 'c7b0c63482ff66b0ccc08caa0d7dc895';
 const POP_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
 const IMG_PATH = `https://image.tmdb.org/t/p/w1280`;
+const SEARCH_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
 const main = document.querySelector('main');
+const form = document.querySelector('#form');
+const search = document.querySelector('.search');
 
-async function getMovie() {
-  const resp = await fetch(POP_URL);
+getMovie(POP_URL);
+
+async function getMovie(url) {
+  const resp = await fetch(url);
   const respData = await resp.json();
 
-  respData.results.forEach(movie => {
-    const { poster_path, title, vote_average } = movie;
-    const movieEl = document.createElement('div');
-    movieEl.classList.add('movie');
-    movieEl.innerHTML = `<img
-                             src="${IMG_PATH}${poster_path}"
-                             alt="${title}"
-                           />
-                           <div class="movie-info">
-                             <h3 class=${getClassByLength(title)}>${title}</h3>
-                             <span class=${getClassByVotes(vote_average)}>${vote_average}</span>
-                           </div>
-                           `;
-    main.append(movieEl);
-  });
+  showData(respData.results);
+}
+
+function showData(movies) {
+  main.innerHTML = '';
+
+  if (movies.length !== 0) {
+    movies.forEach(movie => {
+      const { poster_path, title, vote_average, overview } = movie;
+      const movieEl = document.createElement('div');
+      movieEl.classList.add('movie');
+      movieEl.innerHTML = `<img
+                               src="${IMG_PATH}${poster_path}"
+                               alt="${title}"
+                             />
+                             <div class="movie-info">
+                               <h3 class=${getClassByLength(title)}>${title}</h3>
+                               <span class=${getClassByVotes(vote_average)}>${vote_average}</span>
+                             </div>
+                             <div class="overview">
+                               <h4>Overview:</h4>
+                               ${overview}
+                             </div>
+                             `;
+
+      main.append(movieEl);
+    });
+  }
 }
 
 function getClassByLength(title) {
@@ -42,4 +60,12 @@ function getClassByVotes(votes) {
   return 'red';
 }
 
-getMovie();
+form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const searchTerm = search.value;
+
+  if (searchTerm) {
+    getMovie(SEARCH_URL + searchTerm);
+  }
+});
