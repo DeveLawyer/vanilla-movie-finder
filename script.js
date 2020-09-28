@@ -7,18 +7,21 @@ const main = document.querySelector('main');
 const form = document.querySelector('#form');
 const search = document.querySelector('.search');
 
+// initially get popular movies
 getMovie(POP_URL);
 
 async function getMovie(url) {
   const resp = await fetch(url);
   const respData = await resp.json();
 
+  // filter nully-poster results
   const filteredData = respData.results.filter(movie => movie.poster_path);
 
   showData(filteredData);
 }
 
 function showData(movies) {
+  // clear main
   main.innerHTML = '';
 
   if (movies.length !== 0) {
