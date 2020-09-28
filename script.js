@@ -13,7 +13,9 @@ async function getMovie(url) {
   const resp = await fetch(url);
   const respData = await resp.json();
 
-  showData(respData.results);
+  const filteredData = respData.results.filter(movie => movie.poster_path);
+
+  showData(filteredData);
 }
 
 function showData(movies) {
