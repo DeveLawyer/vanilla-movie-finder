@@ -18,7 +18,7 @@ async function getMovie() {
                            />
                            <div class="movie-info">
                              <h3 class=${getClassByLength(title)}>${title}</h3>
-                             <span>${vote_average}</span>
+                             <span class=${getClassByVotes(vote_average)}>${vote_average}</span>
                            </div>
                            `;
     main.append(movieEl);

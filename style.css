@@ -58,3 +58,15 @@ main {
 .normal-size {
   font-size: 1rem;
 }
+
+.movie-info span.green {
+  color: rgb(36, 220, 36);
+}
+
+.movie-info span.orange {
+  color: rgb(252, 164, 0);
+}
+
+.movie-info span.red {
+  color: red;
+}
