@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&family=Raleway&display=swap");
 
 * {
   box-sizing: border-box;
@@ -12,9 +12,19 @@ body {
 
 header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   background-color: #373b69;
-  padding: 1rem;
+  padding: 1rem 3rem;
+}
+
+.title {
+  font-family: "Raleway", sans-serif;
+  font-size: 2rem;
+  color: #eee;
+}
+
+.title-span {
+  color: red;
 }
 
 .search {
