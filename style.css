@@ -50,3 +50,11 @@ main {
   font-weight: bold;
   padding: 0.25rem 0.5rem;
 }
+
+.small-size {
+  font-size: 0.75rem;
+}
+
+.normal-size {
+  font-size: 1rem;
+}

@@ -9,19 +9,37 @@ async function getMovie() {
   const respData = await resp.json();
 
   respData.results.forEach(movie => {
+    const { poster_path, title, vote_average } = movie;
     const movieEl = document.createElement('div');
     movieEl.classList.add('movie');
     movieEl.innerHTML = `<img
-                             src="${IMG_PATH}${movie.poster_path}"
-                             alt="${movie.title}"
+                             src="${IMG_PATH}${poster_path}"
+                             alt="${title}"
                            />
                            <div class="movie-info">
-                             <h3>${movie.title}</h3>
-                             <span>${movie.vote_average}</span>
+                             <h3 class=${getClassByLength(title)}>${title}</h3>
+                             <span>${vote_average}</span>
                            </div>
                            `;
     main.append(movieEl);
   });
+}
+
+function getClassByLength(title) {
+  if (title.length > 40) {
+    return 'small-size';
+  }
+  return 'normal-size';
+}
+
+function getClassByVotes(votes) {
+  if (votes >= 8) {
+    return 'green';
+  }
+  if (votes >= 5) {
+    return 'orange';
+  }
+  return 'red';
 }
 
 getMovie();
