@@ -95,3 +95,26 @@ main {
 .movie-info span.red {
   color: red;
 }
+
+.overview {
+  background-color: #eee;
+  padding: 2rem;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+  max-height: 100%;
+  overflow: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(101%);
+  transition: transform 0.3s ease-in;
+}
+
+.overview h4 {
+  margin-top: 0;
+}
+
+.movie:hover .overview {
+  transform: translateY(0);
+}
