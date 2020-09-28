@@ -101,6 +101,7 @@ main {
   padding: 2rem;
   font-size: 1rem;
   letter-spacing: 0.2px;
+  line-height: 1.5;
   max-height: 100%;
   overflow: auto;
   position: absolute;
@@ -113,8 +114,14 @@ main {
 
 .overview h4 {
   margin-top: 0;
+  font-weight: 600;
 }
 
 .movie:hover .overview {
   transform: translateY(0);
+}
+
+.not-found {
+  color: #eee;
+  margin: 250px auto;
 }

@@ -42,6 +42,14 @@ function showData(movies) {
 
       main.append(movieEl);
     });
+  } else {
+    const movieNotFound = document.createElement('h2');
+    movieNotFound.classList.add('not-found');
+    movieNotFound.innerHTML = `Sorry... "${search.value}" movie not found 😔`;
+
+    main.append(movieNotFound);
+
+    search.value = '';
   }
 }
 
